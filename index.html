@@ -85,6 +85,8 @@ window.__gcse || (window.__gcse = {});
       starting: mySearchStartingCallback,
     },
 };
+var element = google.search.cse.element.getElement('storesearchS');
+            element.execute('music');
     </script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad();"
@@ -93,8 +95,8 @@ window.__gcse || (window.__gcse = {});
   </head>
 
   <body>
-    <div class="gcse-searchbox"></div>
-<div class="gcse-searchresults"></div>
+    <div class="gcse-searchbox" data-gname="storesearch"></div>></div>
+<div class="gcse-searchresults" data-gname="storesearchS"></div>></div>
     <input id="searchBox" type="text"/>
     <button onclick="makeRequest();">
       Search
