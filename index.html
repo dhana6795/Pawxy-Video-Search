@@ -47,9 +47,13 @@
         var seachQuery = document.getElementById('searchBox').value;
         var restRequest = gapi.client.request({
            'path': 'customsearch/v1',
-           'params' : {'q' : seachQuery,
-           'cx' : '13c78902deae94c75'
-          }
+           'params' : {
+              'q' : seachQuery,
+              'cx' : '13c78902deae94c75',
+              'type' : 'video',
+              'sort': 'dsc'
+
+            }
         });
 
         restRequest.execute(writeResponse);
