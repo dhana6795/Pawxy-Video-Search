@@ -28,7 +28,7 @@ function start() {
   }).then(function() {
     // 3. Initialize and make the API request. AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg
     return gapi.client.request({
-      'path': 'https://www.googleapis.com/customsearch/v1?key=AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg&cx=13c78902deae94c75&q=cars&callback=hndlr"',
+      'path': 'https://www.googleapis.com/customsearch/v1?cx=13c78902deae94c75&q=cars"',
     })
   }).then(function(response) {
     console.log('Error: ' + JSON.stringify(response));
@@ -37,6 +37,7 @@ function start() {
     console.log('Error: ' + JSON.stringify(reason));
   });
 };
+gapi.client.setApiKey("AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg");
 // 1. Load the JavaScript client library.
 gapi.load('client', start);
    
