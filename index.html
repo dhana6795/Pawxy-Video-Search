@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=”utf-8″>
+  <head>
+    <meta charset='utf-8' />
+    
 <title>Pawxy Video Search Engine By Dhana</title>
 <link rel="stylesheet" href="main.css" type="text/css" />
-
-//<script src="https://apis.google.com/js/api.js"></script>
-<script>
-
-function start() {
-  function hndlr(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        // Make sure HTML in item.htmlTitle is escaped.
-        document.getElementById("content").append(
-          document.createElement("br"),
-          document.createTextNode(item.htmlTitle)
-        );
+    <style>
+      #info {
+        border: 1px solid black;
+        padding: 0.25em;
       }
-    }
-  // 2. Initialize the JavaScript client library.
-  gapi.client.init({
-    'apiKey': 'AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg',
-    // Your API key will be automatically added to the Discovery Document URLs.
-    'discoveryDocs': ['https://customsearch.googleapis.com/$discovery/rest'],
-   
-  }).then(function() {
-    // 3. Initialize and make the API request. AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg
-    return gapi.client.request({
-      'path': 'https://www.googleapis.com/customsearch/v1?cx=13c78902deae94c75&q=cars"',
-    })
-  }).then(function(response) {
-    console.log('Error: ' + JSON.stringify(response));
-    console.log(response.result);
-  }, function(reason) {
-    console.log('Error: ' + JSON.stringify(reason));
-  });
-};
-gapi.client.setApiKey("AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg");
-// 1. Load the JavaScript client library.
-gapi.load('client', start);
-   
-</script>
-//<script async src="https://cse.google.com/cse.js?cx=13c78902deae94c75">
-    //AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg
+    </style>
     
-</script>
-</head>
-<body>
-    <div id="content"></div>
-   // <div class="gcse-search" data-resultsUrl="http://localhost:8080"></div>
-</body>
-</html>
+    <script>
+      // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
+      // requests in the code.
+      // The provided key works for this sample only when run from
+      // https://google-api-javascript-client.googlecode.com/hg/samples/requestSample.html
+      // To use in your own application, replace this API key with your own.
+      var apiKey = 'AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg';
 
+      function handleClientLoad() {
+          gapi.load('client', makeRequest);
+      }
+
+      function initClient() {
+        gapi.client.init({
+          apiKey: apiKey,
+        }).then(makeRequest)
+      }
+
+      function makeRequest() {
+        gapi.client.setApiKey(apiKey);
+
+        function writeResponse(resp) {
+          var responseText;
+          if (resp.error && resp.error.errors[0].debugInfo == 'QuotaState: BLOCKED') {
+            responseText = 'Invalid API key provided. Please replace the "apiKey" value with your own.';
+          } else {
+            responseText = resp;
+          }
+          var infoDiv = document.getElementById('search-result');
+          infoDiv.innerHTML = '';
+          infoDiv.appendChild(document.createTextNode(responseText));
+        }
+
+        var seachQuery = document.getElementById('searchBox').value;
+        var restRequest = gapi.client.request({
+           'path': '/customsearch/v1/',
+           'params' : {'q' : seachQuery}
+        });
+
+        restRequest.execute(writeResponse);
+      }
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad();"
+      onreadystatechange="if (this.readyState === 'complete') this.onload();">
+    </script>
+  </head>
+
+  <body>
+    <p>Enter a short URL and click "Expand URL" to get the full URL.</p>
+    <label for="shortUrl">  </label>
+    <input id="searchBox" type="text"/>
+    <button onclick="makeRequest();">
+      Search
+    </button>
+    <div style="margin-top:0.5em;"><span id="search-result">Results</span></div>
+  </body>
+</html>
