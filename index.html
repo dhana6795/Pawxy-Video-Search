@@ -4,6 +4,8 @@
     <meta charset='utf-8' />
     <title>Pawxy Video Search Engine By Dhana</title>
     <link rel="stylesheet" href="main.css" type="text/css" />
+    <script async
+  src="https://cse.google.com/cse.js?cx=000888210889775888983:g9ckaktfipe"></script>
     <style>
       #info {
         border: 1px solid black;
@@ -49,7 +51,7 @@
         var restRequest = gapi.client.request({
            'path': 'customsearch/v1',
            'params' : {
-              'q' : seachQuery + ' +type:video.other',
+              'q' : seachQuery,
               'cx' : '705be23273b884d5c',
               'sort': 'metatags-videoobject-interactioncount'
             }
@@ -57,6 +59,32 @@
 
         restRequest.execute(writeResponse);
       }
+
+      const mySearchStartingCallback = (gname, query) => {
+  const dayOfWeek = new Date().getDay();
+  console.log(dayOfWeek);
+  var days = {
+        "0": "Sunday",
+        "1": "Monday",
+        "2": "Tuesday",
+        "3": "Wednesday",
+        "4": "Thursday",
+        "5": "Friday",
+        "6": "Saturday"
+    };
+
+    return query + ' ' + 'VIDEO';
+};
+// Install the callback.
+window.__gcse || (window.__gcse = {});
+  window.__gcse.searchCallbacks = {
+    image: {
+      starting: mySearchStartingCallback,
+    },
+    web: {
+      starting: mySearchStartingCallback,
+    },
+};
     </script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad();"
@@ -65,6 +93,8 @@
   </head>
 
   <body>
+    <div class="gcse-searchbox"></div>
+<div class="gcse-searchresults"></div>
     <input id="searchBox" type="text"/>
     <button onclick="makeRequest();">
       Search
