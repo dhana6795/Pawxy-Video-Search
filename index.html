@@ -2,9 +2,8 @@
 <html>
   <head>
     <meta charset='utf-8' />
-    
-<title>Pawxy Video Search Engine By Dhana</title>
-<link rel="stylesheet" href="main.css" type="text/css" />
+    <title>Pawxy Video Search Engine By Dhana</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
     <style>
       #info {
         border: 1px solid black;
@@ -37,12 +36,12 @@
           var responseText;
           if (resp.error && resp.error.errors[0].debugInfo == 'QuotaState: BLOCKED') {
             responseText = 'Invalid API key provided. Please replace the "apiKey" value with your own.';
-          } else {
-            responseText = resp;
+          } 
+          var searchResult = document.getElementById('search-result');
+          for(var i =0; i< resp.items.length; i++){
+            searchResult.appendChild(document.createTextNode(responseText));
           }
-          var infoDiv = document.getElementById('search-result');
-          infoDiv.innerHTML = '';
-          infoDiv.appendChild(document.createTextNode(responseText));
+         
         }
 
         var seachQuery = document.getElementById('searchBox').value;
@@ -63,8 +62,6 @@
   </head>
 
   <body>
-    <p>Enter a short URL and click "Expand URL" to get the full URL.</p>
-    <label for="shortUrl">  </label>
     <input id="searchBox" type="text"/>
     <button onclick="makeRequest();">
       Search
