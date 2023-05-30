@@ -39,7 +39,7 @@
           } 
           var searchResult = document.getElementById('search-result');
           for(var i =0; i< resp.items.length; i++){
-            searchResult.appendChild(document.createTextNode(responseText));
+            searchResult.appendChild(document.createTextNode(resp.items[i].htmlTitle));
           }
          
         }
