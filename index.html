@@ -7,7 +7,18 @@
 
 //<script src="https://apis.google.com/js/api.js"></script>
 <script>
+
 function start() {
+  function hndlr(response) {
+      for (var i = 0; i < response.items.length; i++) {
+        var item = response.items[i];
+        // Make sure HTML in item.htmlTitle is escaped.
+        document.getElementById("content").append(
+          document.createElement("br"),
+          document.createTextNode(item.htmlTitle)
+        );
+      }
+    }
   // 2. Initialize the JavaScript client library.
   gapi.client.init({
     'apiKey': 'AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg',
@@ -20,6 +31,7 @@ function start() {
       'path': 'https://www.googleapis.com/customsearch/v1?key=AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg&cx=13c78902deae94c75&q=cars&callback=hndlr"',
     })
   }).then(function(response) {
+    console.log('Error: ' + JSON.stringify(response));
     console.log(response.result);
   }, function(reason) {
     console.log('Error: ' + JSON.stringify(reason));
@@ -27,16 +39,7 @@ function start() {
 };
 // 1. Load the JavaScript client library.
 gapi.load('client', start);
-    function hndlr(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        // Make sure HTML in item.htmlTitle is escaped.
-        document.getElementById("content").append(
-          document.createElement("br"),
-          document.createTextNode(item.htmlTitle)
-        );
-      }
-    }
+   
 </script>
 //<script async src="https://cse.google.com/cse.js?cx=13c78902deae94c75">
     //AIzaSyC15h_QiTV4daXICtSSXA3RVFWx93dS7dg
