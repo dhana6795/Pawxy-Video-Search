@@ -4,50 +4,48 @@
     <meta charset='utf-8' />
     <title>Pawxy Video Search Engine By Dhana</title>
     <link rel="stylesheet" href="main.css" type="text/css" />
-    <script async
-       src="https://cse.google.com/cse.js?cx=000888210889775888983:g9ckaktfipe">
-     // var apiKey = "AIzaSyAxbueUm2nijg_5BarlC7oDu4aDMmvjr9w"
-     
-        searchhelper.perform_google = function(){
-
-            if(typeof(google)!='undefined'){
-                google.search.cse.element.render({
-                    div: "google-search-results",
-                    tag: 'searchresults-only',
-                    gname: 'google-results-gname'
-                });
-                var element = google.search.cse.element.getElement('google-results-gname');
-                var query = $('##search-q').val();
-                element.execute(query);
-            }
-        };
-
-        (function(){
-            // add the google custom stuff:
-            var cx = '004626212387516433456:aex2tyveipy';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            //gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-
-        window.__gcse = {
-          parsetags: 'explicit',
-          callback: function(){
-            searchhelper.search('all');
-          }
-        };
-
-      function makeRequest() {
-        searchhelper.search('all');
-      }
-    </script>
-   
   </head>
+  <script async
+  src="https://cse.google.com/cse.js?cx=000888210889775888983:g9ckaktfipe">
+// var apiKey = "AIzaSyAxbueUm2nijg_5BarlC7oDu4aDMmvjr9w"
 
+   searchhelper.perform_google = function(){
+
+       if(typeof(google)!='undefined'){
+           google.search.cse.element.render({
+               div: "google-search-results",
+               tag: 'searchresults-only',
+               gname: 'google-results-gname'
+           });
+           var element = google.search.cse.element.getElement('google-results-gname');
+           var query = $('##search-q').val();
+           element.execute(query);
+       }
+   };
+
+   (function(){
+       // add the google custom stuff:
+       var cx = '004626212387516433456:aex2tyveipy';
+       var gcse = document.createElement('script');
+       gcse.type = 'text/javascript';
+       gcse.async = true;
+       //gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+       gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//cse.google.com/cse.js?cx=' + cx;
+       var s = document.getElementsByTagName('script')[0];
+       s.parentNode.insertBefore(gcse, s);
+   })();
+
+   window.__gcse = {
+     parsetags: 'explicit',
+     callback: function(){
+       searchhelper.search('all');
+     }
+   };
+
+ function makeRequest() {
+   searchhelper.search('all');
+ }
+</script>
   <body>
    <div>
       <div id="google-search-results"></div>
