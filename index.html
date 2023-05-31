@@ -10,7 +10,7 @@
   <script>
 // var apiKey = "AIzaSyAxbueUm2nijg_5BarlC7oDu4aDMmvjr9w"
 
-   searchhelper.perform_google = function(){
+   perform_google = function(){
 
        if(typeof(google)!='undefined'){
            google.search.cse.element.render({
@@ -44,7 +44,7 @@
    };
 
  function makeRequest() {
-   searchhelper.search('all');
+  perform_google('all');
  }
 </script>
   <body>
