@@ -19,7 +19,7 @@
                gname: 'google-results-gname'
            });
            var element = google.search.cse.element.getElement('google-results-gname');
-           var query = $('##search-q').val();
+           var query = document.getElementsById('#search-q').value;
            element.execute(query);
        }
    };
