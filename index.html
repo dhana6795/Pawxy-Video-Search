@@ -40,6 +40,10 @@
             searchhelper.search('all');
           }
         };
+
+      function search() {
+        searchhelper.search('all');
+      }
     </script>
    
   </head>
@@ -48,7 +52,7 @@
    <div>
       <div id="google-search-results"></div>
       <input type="search" id="search-q" name="search" data-gname="google-results-gname">
-      <input type="submit" value="Go" class="button" onClick="searchhelper.search('all')">
+      <input type="submit" value="Go" class="button" onClick="search()">
       <div></div>
     </div> 
   </body>
